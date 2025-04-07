@@ -1,5 +1,4 @@
 import { Container, Input, SimpleGrid } from "@chakra-ui/react";
-import NavBar from "../NavBar";
 import { PageHeader } from "../PageHeader";
 import { InputGroup } from "../ui/input-group";
 import { LuSearch } from "react-icons/lu";
@@ -40,8 +39,6 @@ const Notebooks = () => {
 
   return (
     <>
-      <NavBar />
-
       <Container maxW="container.lg" mt={8}>
         <PageHeader
           title="Notebooks"
@@ -50,13 +47,7 @@ const Notebooks = () => {
         <InputGroup endElement={<LuSearch />} w="100%" mt={4}>
           <Input placeholder="Search" rounded="md" />
         </InputGroup>
-        {/* <Box mt={4}>
-          <TagsInput
-            value={tags}
-            onChange={setTags}
-            placeHolder="Filter by tags"
-          />
-        </Box> */}
+
         <SimpleGrid
           columns={{ base: 1, md: 2, lg: 3 }}
           mt={4}
@@ -64,7 +55,13 @@ const Notebooks = () => {
           justifyContent="space-around"
         >
           {notebooks.map((notebook: NotebookResource) => {
-            return <ResourceCard resource={notebook} key={notebook.id} />;
+            return (
+              <ResourceCard
+                resource={notebook}
+                key={notebook.id}
+                appendTypeToUrl={false}
+              />
+            );
           })}
         </SimpleGrid>
       </Container>
